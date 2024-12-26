@@ -1,0 +1,2 @@
+contrast	upGenes	downGenes
+ControlvsLUAD	13	97

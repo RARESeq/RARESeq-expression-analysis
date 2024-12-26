@@ -1,0 +1,2 @@
+train	auc
+Validation	0.95443143812709
