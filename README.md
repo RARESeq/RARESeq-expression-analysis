@@ -62,7 +62,7 @@ The set-up steps above only need to be run once. On the other hand, the conda en
 conda activate rareseq_env
 ```
 
-## Step #1: Import RSEM expected counts.
+# Step #1: Import RSEM expected counts.
 
 
 ### Example Usage:
@@ -83,7 +83,7 @@ Rscript importExpression.R <INPUT DIRECTORY> <SAMPLE FILE>
 
 *Tximport RDS file*: An RDS file named “tximport.rds” containing data output by RSEM and re-formatted into a list of 3 matrices. The list contains 1) matrix with expected counts (“counts”), 2) matrix with expected length (“length”), and 3) matrix with transcripts per million (TPM) (“abundance”). For each matrix, genes are listed as rows and samples as columns.
 
-## Step #2: Normalize expression.
+# Step #2: Normalize expression.
 
 ### Example Usage:
 
@@ -115,7 +115,7 @@ Rscript normalizeExpression.R <TXIMPORT RDS FILE> <GENE FILE> <SAMPLE FILE> <NOR
 
 *Normalized RDS file*: An RDS file named according to the <NORMALIZATION METHOD> and <CORRECTION METHOD>” input. The list contains 1) data.frame with input gene information (“genes”), 2) data.frame with input sample information (“samples”), 3) matrix of RSEM expected counts (“counts”), 4) matrix of RSEM expected length (“length”), and 5) matrix of normalized gene expression (“log2NX”). For last 3 matrices, genes are listed as rows and samples as columns.
 
-## Step #3: Calculate z-scores.
+# Step #3: Calculate z-scores.
 
 ### Example Usage:
 
@@ -131,7 +131,7 @@ Rscript calcZcores.R <NORMALIZED RDS FILE>
 
 *Normalized RDS file with Z-scores*: An RDS file containing the same matrices as output for step #2 but with the matrix of z-scores added and with “_withZscores” appended to the file name. If meta-reference samples were specified in the sample information file in step #2, these samples will be used for Z-score standardization and will therefore be removed from the Z-score matrix.
 
-## Step #4: Calculate enrichment scores.
+# Step #4: Calculate enrichment scores.
 
 ### Example Usage:
 
@@ -155,7 +155,7 @@ b. The file may include the columns below.
 
 *Enrichment scores file*: A tab-delimited file containing the enrichment scores and associated empirical p-values for each sample for each gene signature.
 
-## Step #5: Identify differentially expressed genes.
+# Step #5: Identify differentially expressed genes.
 
 ### Example Usage:
 
@@ -173,7 +173,7 @@ Rscript differentialExpression.R <NORMALIZED RDS FILE> <DIFFERENTIAL EXPRESSION 
 
 *Differential expression file(s)*: A tab-delimited file containing the log fold change and adjusted p-values for differential expression based on the provided model equation. One file will be output for each contrast evaluated.
 
-## Step #6: Set up elastic net training inputs.
+# Step #6: Set up elastic net training inputs.
 
 ### Example Usage:
 
@@ -190,7 +190,7 @@ Rscript setupEN.R <NORMALIZED RDS FILE> <GENOTYPING FILE>
 
 *Normalized RDS file for Caret*: An RDS file with “_forCaret.rds” appended to the filename. The RDS object contains 1) data.frame of gene information that has been filtered to include only features to be used for model training, 2) data.frame of sample information that has been filtered to include only samples to be used for model training, 3) matrices of standardized features to be used as predictors for model training and validation, 4) binarized vectors to be used as outcome variable (e.g. case/1 or control/0) for model training and validation. See the Description section for more information about how feature filtering and pre-processing.
 
-## Step #7: Train elastic net model.
+# Step #7: Train elastic net model.
 
 ### Example Usage:
 
@@ -209,7 +209,7 @@ Rscript trainEN.R <NORMALIZED RDS FILE FOR CARET>
 3. *Model metrics file*: A tab-delimited file named “model_metrics.txt” that contains area under the curve (AUC) calculated either using the full training set (“Train”) or using the 10-fold cross validation results (“CV”).
 4. *Model RDS file*: An RDS file named “model.rds” that contains the final model as output by the caret R package.
 
-## Step #8: Validate elastic net model.
+# Step #8: Validate elastic net model.
 
 ### Example Usage:
 
